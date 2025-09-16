@@ -328,16 +328,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     processDocxFile(e.target.result);
                 } else {
                     // For .doc files, show message about server processing needed
-                    showServerProcessingMessage();
+                    showWordFileInstructions();
                 }
             } catch (error) {
                 console.error('Error processing file:', error);
-                showServerProcessingMessage();
+                showWordFileInstructions();
             }
         };
         
         reader.onerror = function() {
-            showServerProcessingMessage();
+            showWordFileInstructions();
         };
         
         // Read as array buffer for docx processing
@@ -345,65 +345,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function processDocxFile(arrayBuffer) {
-        // Note: This is a simplified client-side approach
-        // For production, you should use server-side processing with libraries like:
-        // - PHP: PHPWord, PhpSpreadsheet
-        // - Node.js: mammoth.js, docx-parser
-        // - Python: python-docx
-        
-        try {
-            // Convert to text (very basic extraction)
-            const uint8Array = new Uint8Array(arrayBuffer);
-            let text = '';
-            
-            // Simple text extraction (this won't preserve formatting)
-            for (let i = 0; i < uint8Array.length; i++) {
-                const char = String.fromCharCode(uint8Array[i]);
-                if (char.match(/[a-zA-Z0-9\s\.\,\!\?\-\(\)]/)) {
-                    text += char;
-                }
-            }
-            
-            // Clean up the extracted text
-            text = text.replace(/\s+/g, ' ').trim();
-            
-            if (text.length > 50) {
-                // Convert to basic HTML paragraphs
-                const paragraphs = text.split(/[\.!?]+/).filter(p => p.trim().length > 10);
-                let htmlContent = '';
-                
-                paragraphs.forEach(paragraph => {
-                    const cleanParagraph = paragraph.trim();
-                    if (cleanParagraph.length > 0) {
-                        htmlContent += `<p>${cleanParagraph}.</p>`;
-                    }
-                });
-                
-                emailEditor.innerHTML = htmlContent || '<p>Content extracted from your Word document. Please review and edit as needed.</p>';
-            } else {
-                showServerProcessingMessage();
-            }
-        } catch (error) {
-            console.error('Error extracting content:', error);
-            showServerProcessingMessage();
-        }
-        
-        updateBodyPreview();
+        // Word files require server-side processing for proper content extraction
+        // Show user-friendly message with instructions
+        showWordFileInstructions();
     }
     
-    function showServerProcessingMessage() {
+    function showWordFileInstructions() {
         emailEditor.innerHTML = `
-            <div class="server-processing-message">
+            <div class="word-file-instructions">
                 <iconify-icon icon="material-symbols:info-outline"></iconify-icon>
-                <h4>Server Processing Required</h4>
-                <p>To properly extract content from Word documents with full formatting, this feature requires server-side processing.</p>
-                <p>For now, please copy and paste your content into the editor below:</p>
-                <div class="manual-content-area">
-                    <p>Dear {{salon_name}},</p>
-                    <p>Please paste your Word document content here and format as needed.</p>
-                    <p>You can use the toolbar above to format your content.</p>
-                    <p>Best regards,<br>Your Team</p>
+                <h4>Word File Uploaded Successfully</h4>
+                <p>To use your Word document content:</p>
+                <ol class="instruction-list">
+                    <li>Open your Word document</li>
+                    <li>Select all content (Ctrl+A)</li>
+                    <li>Copy the content (Ctrl+C)</li>
+                    <li>Click in the editor below and paste (Ctrl+V)</li>
+                    <li>Use the formatting toolbar to style your content</li>
+                </ol>
+                <div class="paste-area" contenteditable="true" placeholder="Paste your Word document content here...">
+                    <p><em>Click here and paste your Word document content...</em></p>
                 </div>
+                <p class="note">You can also add variables like {{salon_name}} for personalization.</p>
             </div>
         `;
         updateBodyPreview();
@@ -1027,71 +990,135 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* Processing Message Styles */
-.processing-message {
+.processing-message,
+.word-file-instructions {
     text-align: center;
     padding: 40px 20px;
     color: #6b7280;
 }
 
-.processing-message iconify-icon {
+.processing-message iconify-icon,
+.word-file-instructions iconify-icon {
     font-size: 32px;
     margin-bottom: 16px;
     color: #6366f1;
+}
+
+.processing-message iconify-icon {
     animation: spin 1s linear infinite;
 }
 
-.processing-message p {
+.processing-message p,
+.word-file-instructions p {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
     color: #374151;
 }
 
-.processing-message small {
+.processing-message small,
+.word-file-instructions small {
     font-size: 14px;
     color: #9ca3af;
 }
 
-.server-processing-message {
-    text-align: center;
-    padding: 30px 20px;
-    background: #f9fafb;
+.word-file-instructions {
+    background: #f8faff;
     border-radius: 8px;
     border: 1px solid #e5e7eb;
+    text-align: left;
 }
 
-.server-processing-message iconify-icon {
-    font-size: 48px;
-    color: #3b82f6;
-    margin-bottom: 16px;
-}
-
-.server-processing-message h4 {
+.word-file-instructions h4 {
     font-size: 18px;
     font-weight: 700;
     color: #1f2937;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    text-align: center;
 }
 
-.server-processing-message p {
+.word-file-instructions p {
     font-size: 14px;
     color: #6b7280;
     margin-bottom: 12px;
     line-height: 1.5;
+    text-align: left;
 }
 
-.manual-content-area {
+.instruction-list {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    list-style: none;
+    counter-reset: step-counter;
+}
+
+.instruction-list li {
+    counter-increment: step-counter;
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 30px;
+}
+
+.instruction-list li:before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #6366f1;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.instruction-list li:last-child {
+    margin-bottom: 0;
+}
+
+.paste-area {
     background: white;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
     padding: 16px;
     margin-top: 16px;
-    text-align: left;
+    min-height: 120px;
+    cursor: text;
+    transition: border-color 0.3s ease;
 }
 
-.manual-content-area p {
-    margin-bottom: 12px;
+.paste-area:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    outline: none;
+}
+
+.paste-area p {
+    margin-bottom: 8px;
     color: #374151;
+}
+
+.paste-area em {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.note {
+    font-size: 12px;
+    color: #9ca3af;
+    font-style: italic;
+    text-align: center;
+    margin-top: 16px;
 }
 
 @keyframes spin {

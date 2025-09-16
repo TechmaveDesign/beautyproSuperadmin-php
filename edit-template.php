@@ -430,16 +430,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     processDocxFile(e.target.result);
                 } else {
                     // For .doc files, show message about server processing needed
-                    showServerProcessingMessage();
+                    showWordFileInstructions();
                 }
             } catch (error) {
                 console.error('Error processing file:', error);
-                showServerProcessingMessage();
+                showWordFileInstructions();
             }
         };
         
         reader.onerror = function() {
-            showServerProcessingMessage();
+            showWordFileInstructions();
         };
         
         // Read as array buffer for docx processing
@@ -447,65 +447,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function processDocxFile(arrayBuffer) {
-        // Note: This is a simplified client-side approach
-        // For production, you should use server-side processing with libraries like:
-        // - PHP: PHPWord, PhpSpreadsheet
-        // - Node.js: mammoth.js, docx-parser
-        // - Python: python-docx
-        
-        try {
-            // Convert to text (very basic extraction)
-            const uint8Array = new Uint8Array(arrayBuffer);
-            let text = '';
-            
-            // Simple text extraction (this won't preserve formatting)
-            for (let i = 0; i < uint8Array.length; i++) {
-                const char = String.fromCharCode(uint8Array[i]);
-                if (char.match(/[a-zA-Z0-9\s\.\,\!\?\-\(\)]/)) {
-                    text += char;
-                }
-            }
-            
-            // Clean up the extracted text
-            text = text.replace(/\s+/g, ' ').trim();
-            
-            if (text.length > 50) {
-                // Convert to basic HTML paragraphs
-                const paragraphs = text.split(/[\.!?]+/).filter(p => p.trim().length > 10);
-                let htmlContent = '';
-                
-                paragraphs.forEach(paragraph => {
-                    const cleanParagraph = paragraph.trim();
-                    if (cleanParagraph.length > 0) {
-                        htmlContent += `<p>${cleanParagraph}.</p>`;
-                    }
-                });
-                
-                emailEditor.innerHTML = htmlContent || '<p>Content extracted from your Word document. Please review and edit as needed.</p>';
-            } else {
-                showServerProcessingMessage();
-            }
-        } catch (error) {
-            console.error('Error extracting content:', error);
-            showServerProcessingMessage();
-        }
-        
-        updateBodyPreview();
+        // Word files require server-side processing for proper content extraction
+        // Show user-friendly message with instructions
+        showWordFileInstructions();
     }
     
-    function showServerProcessingMessage() {
+    function showWordFileInstructions() {
         emailEditor.innerHTML = `
-            <div class="server-processing-message">
+            <div class="word-file-instructions">
                 <iconify-icon icon="material-symbols:info-outline"></iconify-icon>
-                <h4>Server Processing Required</h4>
-                <p>To properly extract content from Word documents with full formatting, this feature requires server-side processing.</p>
-                <p>For now, please copy and paste your content into the editor below:</p>
-                <div class="manual-content-area">
-                    <p>Dear {{salon_name}},</p>
-                    <p>Please paste your Word document content here and format as needed.</p>
-                    <p>You can use the toolbar above to format your content.</p>
-                    <p>Best regards,<br>Your Team</p>
+                <h4>Word File Uploaded Successfully</h4>
+                <p>To use your Word document content:</p>
+                <ol class="instruction-list">
+                    <li>Open your Word document</li>
+                    <li>Select all content (Ctrl+A)</li>
+                    <li>Copy the content (Ctrl+C)</li>
+                    <li>Click in the editor below and paste (Ctrl+V)</li>
+                    <li>Use the formatting toolbar to style your content</li>
+                </ol>
+                <div class="paste-area" contenteditable="true" placeholder="Paste your Word document content here...">
+                    <p><em>Click here and paste your Word document content...</em></p>
                 </div>
+                <p class="note">You can also add variables like {{salon_name}} for personalization.</p>
             </div>
         `;
         updateBodyPreview();
