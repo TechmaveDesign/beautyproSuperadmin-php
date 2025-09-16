@@ -13,15 +13,15 @@
                     </svg>
                 </a>
                 <div class="my-auto ">
-                    <h2 class="mb-1">Create Email Template</h2>
-                    <p class="page-subtitle">Design email templates for customer communication</p>
+                    <h2 class="mb-1">Edit Email Template</h2>
+                    <p class="page-subtitle">Modify email template for customer communication</p>
                 </div>
             </div>
 
             <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
                 <div class="">
                     <button type="button" id="saveTemplateBtn" class="btn btn-primary d-flex align-items-center cmnaddbtn">
-                        <iconify-icon icon="fluent:save-20-regular"></iconify-icon>Save Template
+                        <iconify-icon icon="fluent:save-20-regular"></iconify-icon>Save Changes
                     </button>
                 </div>
                 <div class="head-icons ms-2 headicon_innerpage">
@@ -46,17 +46,17 @@
                             </h6>
                         </div>
                         <div class="card-body">
-                            <form id="createTemplateForm">
+                            <form id="editTemplateForm">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="email-template-form-label">Template Name</label>
                                         <input type="text" class="form-control" id="templateName"
-                                            placeholder="e.g., Welcome Email">
+                                            placeholder="e.g., Welcome Email" value="Welcome Email Template">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="email-template-form-label">Template Type</label>
                                         <input type="text" class="form-control" id="templateType"
-                                            placeholder="e.g., Welcome, Notification, Promotion">
+                                            placeholder="e.g., Welcome, Notification, Promotion" value="Welcome">
                                     </div>
                                 </div>
 
@@ -64,7 +64,7 @@
                                     <div class="col-md-12 mb-3">
                                         <label class="email-template-form-label">Subject Line</label>
                                         <input type="text" class="form-control" id="templateSubject"
-                                            placeholder="e.g., Welcome to BeautyPro!">
+                                            placeholder="e.g., Welcome to BeautyPro!" value="Welcome to BeautyPro - Let's Get Started!">
                                     </div>
                                 </div>
 
@@ -82,7 +82,7 @@
                     </div>
 
                     <!-- Email Content -->
-                    <div class="card email-template-glass-card">
+                    <div class="card email-template-glass-card mb-4">
                         <div class="card-header">
                             <h6 class="card-title">
                                 <iconify-icon icon="material-symbols:edit-outline"></iconify-icon>
@@ -107,38 +107,59 @@
 
                             <!-- Text Editor Section -->
                             <div class="email-template-content-section active" id="editorSection">
-                            <div class="mb-3">
-                                <label class="email-template-form-label">Email Body</label>
-                                <div class="email-template-editor-toolbar">
-                                    <button type="button" class="email-template-toolbar-btn" data-action="bold">
-                                        <iconify-icon icon="material-symbols:format-bold"></iconify-icon>
-                                    </button>
-                                    <button type="button" class="email-template-toolbar-btn" data-action="italic">
-                                        <iconify-icon icon="material-symbols:format-italic"></iconify-icon>
-                                    </button>
-                                    <button type="button" class="email-template-toolbar-btn" data-action="underline">
-                                        <iconify-icon icon="material-symbols:format-underlined"></iconify-icon>
-                                    </button>
-                                    <div class="email-template-toolbar-divider"></div>
-                                    <button type="button" class="email-template-toolbar-btn" data-action="insertOrderedList">
-                                        <iconify-icon icon="material-symbols:format-list-numbered"></iconify-icon>
-                                    </button>
-                                    <button type="button" class="email-template-toolbar-btn" data-action="insertUnorderedList">
-                                        <iconify-icon icon="material-symbols:format-list-bulleted"></iconify-icon>
-                                    </button>
-                                    <div class="email-template-toolbar-divider"></div>
-                                    <button type="button" class="email-template-toolbar-btn" data-action="createLink">
-                                        <iconify-icon icon="material-symbols:link"></iconify-icon>
-                                    </button>
+                                <div class="mb-3">
+                                    <label class="email-template-form-label">Email Body</label>
+                                    <div class="email-template-editor-toolbar">
+                                        <button type="button" class="email-template-toolbar-btn" data-action="bold">
+                                            <iconify-icon icon="material-symbols:format-bold"></iconify-icon>
+                                        </button>
+                                        <button type="button" class="email-template-toolbar-btn" data-action="italic">
+                                            <iconify-icon icon="material-symbols:format-italic"></iconify-icon>
+                                        </button>
+                                        <button type="button" class="email-template-toolbar-btn" data-action="underline">
+                                            <iconify-icon icon="material-symbols:format-underlined"></iconify-icon>
+                                        </button>
+                                        <div class="email-template-toolbar-divider"></div>
+                                        <button type="button" class="email-template-toolbar-btn" data-action="insertOrderedList">
+                                            <iconify-icon icon="material-symbols:format-list-numbered"></iconify-icon>
+                                        </button>
+                                        <button type="button" class="email-template-toolbar-btn" data-action="insertUnorderedList">
+                                            <iconify-icon icon="material-symbols:format-list-bulleted"></iconify-icon>
+                                        </button>
+                                        <div class="email-template-toolbar-divider"></div>
+                                        <button type="button" class="email-template-toolbar-btn" data-action="createLink">
+                                            <iconify-icon icon="material-symbols:link"></iconify-icon>
+                                        </button>
+                                    </div>
+                                    <div class="email-template-editor" id="emailEditor" contenteditable="true">
+                                        <h2>Welcome to BeautyPro!</h2>
+                                        <p>Dear {{salon_name}},</p>
+                                        <p>We're thrilled to welcome you to the BeautyPro platform! Your journey to streamlined salon management starts here.</p>
+                                        <h3>What's Next?</h3>
+                                        <ul>
+                                            <li>Complete your salon profile</li>
+                                            <li>Add your team members</li>
+                                            <li>Upload your service gallery</li>
+                                            <li>Start accepting online bookings</li>
+                                        </ul>
+                                        <p>If you have any questions, our support team is here to help at <a href="mailto:support@beautypro.com">support@beautypro.com</a></p>
+                                        <p>Best regards,<br><strong>The BeautyPro Team</strong></p>
+                                    </div>
                                 </div>
-                                <div class="email-template-editor" id="emailEditor" contenteditable="true">
-                                    <p>Dear {{salon_name}},</p>
-                                    <p>Welcome to BeautyPro! We're excited to have you join our platform.</p>
-                                    <p>Your account has been successfully created and you can now start managing your salon.</p>
-                                    <p>Best regards,<br>The BeautyPro Team</p>
-                                </div>
-                            </div>
 
+                                <!-- Variables Section -->
+                                <div class="email-template-variables">
+                                    <label class="email-template-form-label">Available Variables</label>
+                                    <div class="email-template-variable-tags">
+                                        <span class="email-template-variable-tag" data-variable="{{salon_name}}">{{salon_name}}</span>
+                                        <span class="email-template-variable-tag" data-variable="{{owner_name}}">{{owner_name}}</span>
+                                        <span class="email-template-variable-tag" data-variable="{{plan_name}}">{{plan_name}}</span>
+                                        <span class="email-template-variable-tag" data-variable="{{expiry_date}}">{{expiry_date}}</span>
+                                        <span class="email-template-variable-tag" data-variable="{{amount}}">{{amount}}</span>
+                                        <span class="email-template-variable-tag" data-variable="{{due_date}}">{{due_date}}</span>
+                                    </div>
+                                    <p class="email-template-variable-help">Click on variables to insert them into your email content</p>
+                                </div>
                             </div>
 
                             <!-- File Upload Section -->
@@ -169,6 +190,44 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Template Statistics -->
+                    <div class="card email-template-glass-card">
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                <iconify-icon icon="material-symbols:analytics-outline"></iconify-icon>
+                                Template Statistics
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="email-template-stat-item">
+                                        <div class="email-template-stat-value">247</div>
+                                        <div class="email-template-stat-label">Times Sent</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="email-template-stat-item">
+                                        <div class="email-template-stat-value">89.2%</div>
+                                        <div class="email-template-stat-label">Open Rate</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="email-template-stat-item">
+                                        <div class="email-template-stat-value">34.7%</div>
+                                        <div class="email-template-stat-label">Click Rate</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="email-template-stat-item">
+                                        <div class="email-template-stat-value">Dec 15</div>
+                                        <div class="email-template-stat-label">Last Used</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Preview -->
@@ -181,21 +240,29 @@
                             <div class="email-template-preview" id="emailPreview">
                                 <div class="email-template-preview-header">
                                     <div class="email-template-preview-from">
-                                        <strong>From:</strong> BeautyPro &lt;noreply@beautypro.com&gt;
+                                        <strong>From:</strong> BeautyPro <noreply@beautypro.com>
                                     </div>
                                     <div class="email-template-preview-to">
                                         <strong>To:</strong> salon@example.com
                                     </div>
                                     <div class="email-template-preview-subject">
-                                        <strong>Subject:</strong> <span id="previewSubject">Email Subject</span>
+                                        <strong>Subject:</strong> <span id="previewSubject">Welcome to BeautyPro - Let's Get Started!</span>
                                     </div>
                                 </div>
                                 <div class="email-template-preview-divider"></div>
                                 <div class="email-template-preview-body" id="previewBody">
+                                    <h2>Welcome to BeautyPro!</h2>
                                     <p>Dear Glamour Studio,</p>
-                                    <p>Welcome to BeautyPro! We're excited to have you join our platform.</p>
-                                    <p>Your account has been successfully created and you can now start managing your salon.</p>
-                                    <p>Best regards,<br>The BeautyPro Team</p>
+                                    <p>We're thrilled to welcome you to the BeautyPro platform! Your journey to streamlined salon management starts here.</p>
+                                    <h3>What's Next?</h3>
+                                    <ul>
+                                        <li>Complete your salon profile</li>
+                                        <li>Add your team members</li>
+                                        <li>Upload your service gallery</li>
+                                        <li>Start accepting online bookings</li>
+                                    </ul>
+                                    <p>If you have any questions, our support team is here to help at <a href="mailto:support@beautypro.com">support@beautypro.com</a></p>
+                                    <p>Best regards,<br><strong>The BeautyPro Team</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -208,6 +275,41 @@
                                 <div class="email-template-info-item">
                                     <span class="email-template-info-label">Status:</span>
                                     <span class="email-template-badge email-template-badge-success" id="previewStatus">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Template History -->
+                    <div class="card email-template-glass-card">
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                <iconify-icon icon="material-symbols:history"></iconify-icon>
+                                Recent Changes
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="email-template-activity-list">
+                                <div class="email-template-activity-item">
+                                    <div class="email-template-activity-dot email-template-success"></div>
+                                    <div class="email-template-activity-content">
+                                        <div class="email-template-activity-title">Content updated</div>
+                                        <div class="email-template-activity-subtitle">Modified email body content • 2 days ago</div>
+                                    </div>
+                                </div>
+                                <div class="email-template-activity-item">
+                                    <div class="email-template-activity-dot email-template-primary"></div>
+                                    <div class="email-template-activity-content">
+                                        <div class="email-template-activity-title">Subject line changed</div>
+                                        <div class="email-template-activity-subtitle">Updated subject line • 1 week ago</div>
+                                    </div>
+                                </div>
+                                <div class="email-template-activity-item">
+                                    <div class="email-template-activity-dot email-template-warning"></div>
+                                    <div class="email-template-activity-content">
+                                        <div class="email-template-activity-title">Template created</div>
+                                        <div class="email-template-activity-subtitle">Initial template setup • 2 weeks ago</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -319,16 +421,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const sampleContent = `
                 <h2>Welcome to BeautyPro!</h2>
                 <p>Dear {{salon_name}},</p>
-                <p>We're thrilled to welcome you to the BeautyPro platform! Your journey to streamlined salon management starts here.</p>
-                <h3>What's Next?</h3>
+                <p>We're excited to have you join our platform and look forward to helping you grow your business.</p>
+                <h3>Getting Started</h3>
                 <ul>
-                    <li>Complete your salon profile</li>
-                    <li>Add your team members</li>
-                    <li>Upload your service gallery</li>
-                    <li>Start accepting online bookings</li>
+                    <li>Set up your salon profile</li>
+                    <li>Add your services and pricing</li>
+                    <li>Invite your team members</li>
+                    <li>Configure your booking settings</li>
                 </ul>
-                <p>If you have any questions, our support team is here to help at <a href="mailto:support@beautypro.com">support@beautypro.com</a></p>
-                <p>Best regards,<br><strong>The BeautyPro Team</strong></p>
+                <p>Our team is here to support you every step of the way. Contact us at <a href="mailto:support@beautypro.com">support@beautypro.com</a></p>
+                <p>Welcome aboard!<br><strong>The BeautyPro Team</strong></p>
             `;
             emailEditor.innerHTML = sampleContent;
             updateBodyPreview();
@@ -396,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Reset button after 2 seconds
             setTimeout(() => {
-                saveTemplateBtn.innerHTML = '<iconify-icon icon="fluent:save-20-regular"></iconify-icon>Save Template';
+                saveTemplateBtn.innerHTML = '<iconify-icon icon="fluent:save-20-regular"></iconify-icon>Save Changes';
                 saveTemplateBtn.classList.remove('btn-success');
                 saveTemplateBtn.classList.add('btn-primary');
                 saveTemplateBtn.disabled = false;
@@ -472,6 +574,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Email Template Styles */
 .email-template-wrapper {
     padding: 0;
+    margin-top: 10px;
 }
 
 .email-template-glass-card {
@@ -768,6 +871,30 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-bottom: 0;
 }
 
+.email-template-editor h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 16px;
+}
+
+.email-template-editor h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+.email-template-editor ul {
+    margin-bottom: 16px;
+    padding-left: 20px;
+}
+
+.email-template-editor li {
+    margin-bottom: 6px;
+}
+
 /* Variables Section */
 .email-template-variables {
     margin-top: 24px;
@@ -805,6 +932,87 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #9ca3af;
     margin: 0;
     font-style: italic;
+}
+
+/* Statistics Section */
+.email-template-stat-item {
+    text-align: center;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.email-template-stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.email-template-stat-label {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Activity List */
+.email-template-activity-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.email-template-activity-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.email-template-activity-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.email-template-activity-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 12px;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.email-template-activity-dot.email-template-success {
+    background-color: #10b981;
+}
+
+.email-template-activity-dot.email-template-primary {
+    background-color: #6366f1;
+}
+
+.email-template-activity-dot.email-template-warning {
+    background-color: #f59e0b;
+}
+
+.email-template-activity-content {
+    flex: 1;
+}
+
+.email-template-activity-title {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.email-template-activity-subtitle {
+    font-size: 12px;
+    color: #6b7280;
 }
 
 /* Preview Styles */
@@ -854,6 +1062,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .email-template-preview-body p:last-child {
     margin-bottom: 0;
+}
+
+.email-template-preview-body h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 16px;
+}
+
+.email-template-preview-body h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+.email-template-preview-body ul {
+    margin-bottom: 16px;
+    padding-left: 20px;
+}
+
+.email-template-preview-body li {
+    margin-bottom: 6px;
 }
 
 /* Preview Info */
@@ -926,6 +1158,11 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 4px 6px;
         font-size: 14px;
     }
+    
+    .email-template-source-tabs {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -950,9 +1187,5 @@ document.addEventListener('DOMContentLoaded', function() {
 .btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
-}
-.email-template-wrapper {
-    padding: 0;
-    margin-top: 10px;
 }
 </style>
