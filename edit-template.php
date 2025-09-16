@@ -416,25 +416,99 @@ document.addEventListener('DOMContentLoaded', function() {
         fileInfo.style.display = 'block';
         fileUploadArea.style.display = 'none';
         
-        // Simulate file processing and content extraction
-        setTimeout(() => {
-            const sampleContent = `
-                <h2>Welcome to BeautyPro!</h2>
-                <p>Dear {{salon_name}},</p>
-                <p>We're excited to have you join our platform and look forward to helping you grow your business.</p>
-                <h3>Getting Started</h3>
-                <ul>
-                    <li>Set up your salon profile</li>
-                    <li>Add your services and pricing</li>
-                    <li>Invite your team members</li>
-                    <li>Configure your booking settings</li>
-                </ul>
-                <p>Our team is here to support you every step of the way. Contact us at <a href="mailto:support@beautypro.com">support@beautypro.com</a></p>
-                <p>Welcome aboard!<br><strong>The BeautyPro Team</strong></p>
-            `;
-            emailEditor.innerHTML = sampleContent;
-            updateBodyPreview();
-        }, 1500);
+        // Show processing message
+        emailEditor.innerHTML = '<div class="processing-message"><iconify-icon icon="eos-icons:loading"></iconify-icon><p>Processing Word document...</p><small>Extracting content from your file</small></div>';
+        updateBodyPreview();
+        
+        // Try to read file content (limited client-side processing)
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                // For .docx files, we can attempt basic text extraction
+                if (file.name.toLowerCase().endsWith('.docx')) {
+                    // This is a simplified approach - real Word processing requires server-side tools
+                    processDocxFile(e.target.result);
+                } else {
+                    // For .doc files, show message about server processing needed
+                    showServerProcessingMessage();
+                }
+            } catch (error) {
+                console.error('Error processing file:', error);
+                showServerProcessingMessage();
+            }
+        };
+        
+        reader.onerror = function() {
+            showServerProcessingMessage();
+        };
+        
+        // Read as array buffer for docx processing
+        reader.readAsArrayBuffer(file);
+    }
+    
+    function processDocxFile(arrayBuffer) {
+        // Note: This is a simplified client-side approach
+        // For production, you should use server-side processing with libraries like:
+        // - PHP: PHPWord, PhpSpreadsheet
+        // - Node.js: mammoth.js, docx-parser
+        // - Python: python-docx
+        
+        try {
+            // Convert to text (very basic extraction)
+            const uint8Array = new Uint8Array(arrayBuffer);
+            let text = '';
+            
+            // Simple text extraction (this won't preserve formatting)
+            for (let i = 0; i < uint8Array.length; i++) {
+                const char = String.fromCharCode(uint8Array[i]);
+                if (char.match(/[a-zA-Z0-9\s\.\,\!\?\-\(\)]/)) {
+                    text += char;
+                }
+            }
+            
+            // Clean up the extracted text
+            text = text.replace(/\s+/g, ' ').trim();
+            
+            if (text.length > 50) {
+                // Convert to basic HTML paragraphs
+                const paragraphs = text.split(/[\.!?]+/).filter(p => p.trim().length > 10);
+                let htmlContent = '';
+                
+                paragraphs.forEach(paragraph => {
+                    const cleanParagraph = paragraph.trim();
+                    if (cleanParagraph.length > 0) {
+                        htmlContent += `<p>${cleanParagraph}.</p>`;
+                    }
+                });
+                
+                emailEditor.innerHTML = htmlContent || '<p>Content extracted from your Word document. Please review and edit as needed.</p>';
+            } else {
+                showServerProcessingMessage();
+            }
+        } catch (error) {
+            console.error('Error extracting content:', error);
+            showServerProcessingMessage();
+        }
+        
+        updateBodyPreview();
+    }
+    
+    function showServerProcessingMessage() {
+        emailEditor.innerHTML = `
+            <div class="server-processing-message">
+                <iconify-icon icon="material-symbols:info-outline"></iconify-icon>
+                <h4>Server Processing Required</h4>
+                <p>To properly extract content from Word documents with full formatting, this feature requires server-side processing.</p>
+                <p>For now, please copy and paste your content into the editor below:</p>
+                <div class="manual-content-area">
+                    <p>Dear {{salon_name}},</p>
+                    <p>Please paste your Word document content here and format as needed.</p>
+                    <p>You can use the toolbar above to format your content.</p>
+                    <p>Best regards,<br>Your Team</p>
+                </div>
+            </div>
+        `;
+        updateBodyPreview();
     }
     
     function formatFileSize(bytes) {
