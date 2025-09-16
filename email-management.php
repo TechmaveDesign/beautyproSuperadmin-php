@@ -4,15 +4,15 @@
     <div class="content">
         <div class="d-md-flex pagetop_headercmntb d-block align-items-center justify-content-between page-breadcrumb ">
             <div class="my-auto ">
-                <h2 class="mb-1">Email Management</h2>
-                <p class="page-subtitle">Manage campaigns, templates, and communication</p>
+                <h2 class="mb-1">Email Templates</h2>
+                <p class="page-subtitle">Manage email templates for customer communication</p>
             </div>
             <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
 
                 <div class="">
-                  <a href="create-plan.php"
+                  <a href="create-template.php"
                         class="btn btn-primary d-flex align-items-center cmnaddbtn">
-                       <iconify-icon icon="icon-park-outline:add-one"></iconify-icon> Add Template
+                       <iconify-icon icon="icon-park-outline:add-one"></iconify-icon>Create Template
                     </a>
                 </div>
                 <div class="head-icons ms-2 headicon_innerpage">
@@ -30,18 +30,17 @@
             <div class="metric-card">
                 <div class="metric-content">
                     <div class="metric-info">
-                        <p class="metric-label">Total Sent</p>
-                        <p class="metric-value primary">521</p>
+                        <p class="metric-label">Total Templates</p>
+                        <p class="metric-value primary">12</p>
                     </div>
                     <div class="metric-icon primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" class="lucide lucide-send"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-text" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10,9 9,9 8,9"></polyline></svg>
                     </div>
                 </div>
                 <div class="metric-footer">
                     <div class="metric-change positive">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" class="lucide lucide-trending-up"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>
-                        <span>+8.2%</span>
-                        <span class="text-muted">vs last month</span>
+                        <span>+3 new</span>
+                        <span class="text-muted">this month</span>
                     </div>
                 </div>
             </div>
@@ -51,15 +50,15 @@
             <div class="metric-card">
                 <div class="metric-content">
                     <div class="metric-info">
-                        <p class="metric-label">Open Rate</p>
-                        <p class="metric-value success">57.1%</p>
+                        <p class="metric-label">Active Templates</p>
+                        <p class="metric-value success">9</p>
                     </div>
                     <div class="metric-icon success">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" class="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
                     </div>
                 </div>
                 <div class="metric-footer">
-                    <p class="text-muted">Industry avg: 42.1%</p>
+                    <p class="text-muted">75% of total</p>
                 </div>
             </div>
         </div>
@@ -68,15 +67,15 @@
             <div class="metric-card">
                 <div class="metric-content">
                     <div class="metric-info">
-                        <p class="metric-label">Click Rate</p>
-                        <p class="metric-value warning">20.4%</p>
+                        <p class="metric-label">Draft Templates</p>
+                        <p class="metric-value warning">3</p>
                     </div>
                     <div class="metric-icon warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bar-chart-3" class="lucide lucide-bar-chart-3"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="edit-3" class="lucide lucide-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                     </div>
                 </div>
                 <div class="metric-footer">
-                    <p class="text-muted">Industry avg: 18.5%</p>
+                    <p class="text-muted">25% of total</p>
                 </div>
             </div>
         </div>
@@ -85,15 +84,15 @@
             <div class="metric-card">
                 <div class="metric-content">
                     <div class="metric-info">
-                        <p class="metric-label">Active Campaigns</p>
-                        <p class="metric-value primary">1</p>
+                        <p class="metric-label">Most Used</p>
+                        <p class="metric-value primary">Welcome</p>
                     </div>
                     <div class="metric-icon primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar" class="lucide lucide-calendar"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
                     </div>
                 </div>
                 <div class="metric-footer">
-                    <p class="text-muted">1 scheduled</p>
+                    <p class="text-muted">Template type</p>
                 </div>
             </div>
         </div>
@@ -103,7 +102,7 @@
         <div class="card tablemaincard_nopaddingleftright">
             <div class="card-header">
                 <h5 class="card-title">
-                    <iconify-icon icon="fontisto:email"></iconify-icon> Email Campaigns
+                    <iconify-icon icon="fontisto:email"></iconify-icon> Email Templates
                 </h5>
             </div>
 
@@ -130,7 +129,7 @@
                                     <div class="input-blocks">
                                         <i data-feather="toggle-right" class="info-img"></i>
                                        <select class="form-select select2">
-                                <option>All Types</option>
+                                <option>All Templates</option>
                                 <option>Welcome</option>
                                 <option>Promotion</option>
                                 <option>Newsletter</option>
@@ -162,12 +161,10 @@
             <table class="table common-datatable nowrap w-100">
                 <thead>
                     <tr>
-                        <th>Campaign Name</th>
+                        <th>Template Name</th>
                         <th>Type</th>
                         <th>Status</th>
-                        <th>Recipients</th>
-                        <th>Open Rate</th>
-                        <th>Click Rate</th>
+                        <th>Created On</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -175,24 +172,28 @@
                                 <tr>
                                     <td>
                                         <div>
-                                            <div class="fw-medium">Welcome New Salons</div>
-                                            <div class="text-muted small">EML001</div>
+                                            <div class="fw-medium">Welcome Email Template</div>
+                                            <div class="text-muted small">TPL001</div>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-primary">Welcome</span></td>
                                     <td><span class="badge badge-success">Active</span></td>
-                                    <td>156</td>
-                                    <td class="fw-medium">57.1%</td>
-                                    <td class="fw-medium">21.8%</td>
+                                    <td>Dec 15, 2024</td>
                                    <td>
                             <div class="d-flex align-items-center ActionDropdown">
                                 <div class="d-flex">
 
-                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Salon Details" href="salon-details.php">
+                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit Template" href="edit-template.php">
                                         <span class="icon"><span class="feather-icon">
-                                                <iconify-icon icon="hugeicons:view"></iconify-icon>
+                                                <iconify-icon icon="fluent:edit-20-regular"></iconify-icon>
                                             </span></span>
                                     </a>
+
+                                    <button class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Delete Template">
+                                        <span class="icon"><span class="feather-icon">
+                                                <iconify-icon icon="fluent:delete-16-regular"></iconify-icon>
+                                            </span></span>
+                                    </button>
 
                                 </div>
                             </div>
@@ -201,76 +202,88 @@
                                 <tr>
                                     <td>
                                         <div>
-                                            <div class="fw-medium">Premium Plan Promotion</div>
-                                            <div class="text-muted small">EML002</div>
+                                            <div class="fw-medium">Payment Reminder Template</div>
+                                            <div class="text-muted small">TPL002</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-danger">Notification</span></td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Dec 10, 2024</td>
+                                    <td>
+                            <div class="d-flex align-items-center ActionDropdown">
+                                <div class="d-flex">
+
+                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit Template" href="edit-template.php">
+                                        <span class="icon"><span class="feather-icon">
+                                                <iconify-icon icon="fluent:edit-20-regular"></iconify-icon>
+                                            </span></span>
+                                    </a>
+
+                                    <button class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Delete Template">
+                                        <span class="icon"><span class="feather-icon">
+                                                <iconify-icon icon="fluent:delete-16-regular"></iconify-icon>
+                                            </span></span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <div class="fw-medium">Subscription Renewal Template</div>
+                                            <div class="text-muted small">TPL003</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-warning">Renewal</span></td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>Dec 8, 2024</td>
+                                    <td>
+                            <div class="d-flex align-items-center ActionDropdown">
+                                <div class="d-flex">
+
+                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit Template" href="edit-template.php">
+                                        <span class="icon"><span class="feather-icon">
+                                                <iconify-icon icon="fluent:edit-20-regular"></iconify-icon>
+                                            </span></span>
+                                    </a>
+
+                                    <button class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Delete Template">
+                                        <span class="icon"><span class="feather-icon">
+                                                <iconify-icon icon="fluent:delete-16-regular"></iconify-icon>
+                                            </span></span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <div class="fw-medium">Promotional Offer Template</div>
+                                            <div class="text-muted small">TPL004</div>
                                         </div>
                                     </td>
                                     <td><span class="badge badge-success">Promotion</span></td>
                                     <td><span class="badge badge-secondary">Draft</span></td>
-                                    <td>0</td>
-                                    <td class="fw-medium">—</td>
-                                    <td class="fw-medium">—</td>
-                                    <td>
-                            <div class="d-flex align-items-center ActionDropdown">
-                                <div class="d-flex">
-
-                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Salon Details" href="salon-details.php">
-                                        <span class="icon"><span class="feather-icon">
-                                                <iconify-icon icon="hugeicons:view"></iconify-icon>
-                                            </span></span>
-                                    </a>
-
-                                </div>
-                            </div>
-                        </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>
-                                            <div class="fw-medium">Monthly Newsletter</div>
-                                            <div class="text-muted small">EML003</div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-warning">Newsletter</span></td>
-                                    <td><span class="badge badge-success">Sent</span></td>
-                                    <td>342</td>
-                                    <td class="fw-medium">57.9%</td>
-                                    <td class="fw-medium">19.6%</td>
-                                    <td>
-                            <div class="d-flex align-items-center ActionDropdown">
-                                <div class="d-flex">
-
-                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Salon Details" href="salon-details.php">
-                                        <span class="icon"><span class="feather-icon">
-                                                <iconify-icon icon="hugeicons:view"></iconify-icon>
-                                            </span></span>
-                                    </a>
-
-                                </div>
-                            </div>
-                        </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>
-                                            <div class="fw-medium">Payment Failed Reminder</div>
-                                            <div class="text-muted small">EML004</div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-danger">Notification</span></td>
-                                     <td><span class="badge badge-success">Active</span></td>
-                                    <td>23</td>
-                                    <td class="fw-medium">—</td>
-                                    <td class="fw-medium">—</td>
+                                    <td>Dec 5, 2024</td>
                                    <td>
                             <div class="d-flex align-items-center ActionDropdown">
                                 <div class="d-flex">
 
-                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Salon Details" href="salon-details.php">
+                                    <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit Template" href="edit-template.php">
                                         <span class="icon"><span class="feather-icon">
-                                                <iconify-icon icon="hugeicons:view"></iconify-icon>
+                                                <iconify-icon icon="fluent:edit-20-regular"></iconify-icon>
                                             </span></span>
                                     </a>
+
+                                    <button class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Delete Template">
+                                        <span class="icon"><span class="feather-icon">
+                                                <iconify-icon icon="fluent:delete-16-regular"></iconify-icon>
+                                            </span></span>
+                                    </button>
 
                                 </div>
                             </div>
