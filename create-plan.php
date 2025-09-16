@@ -257,3 +257,206 @@
 </div>
 
 <?php include("footer.php") ?>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all form elements
+    const planNameInput = document.getElementById('planName');
+    const planPriceInput = document.getElementById('planPrice');
+    const planDescriptionInput = document.getElementById('planDescription');
+    const maxSalonsInput = document.getElementById('maxSalons');
+    const maxArtistsInput = document.getElementById('maxArtists');
+    const isPopularCheckbox = document.getElementById('isPopular');
+    const isActiveCheckbox = document.getElementById('isActive');
+    const billingDurationSelect = document.querySelector('.custom-default-select .select-trigger');
+    const featureCheckboxes = document.querySelectorAll('.feature-input');
+    
+    // Get all preview elements
+    const previewName = document.getElementById('previewName');
+    const previewPrice = document.getElementById('previewPrice');
+    const previewPeriod = document.getElementById('previewPeriod');
+    const previewDescription = document.getElementById('previewDescription');
+    const previewBadge = document.getElementById('previewBadge');
+    const previewFeatures = document.getElementById('previewFeatures');
+    const previewMaxSalons = document.getElementById('previewMaxSalons');
+    const previewMaxArtists = document.getElementById('previewMaxArtists');
+    const previewStatus = document.getElementById('previewStatus');
+    
+    // Update plan name
+    function updatePlanName() {
+        const name = planNameInput.value.trim();
+        previewName.textContent = name || 'Plan Name';
+    }
+    
+    // Update plan price
+    function updatePlanPrice() {
+        const price = planPriceInput.value.trim();
+        if (price && !isNaN(price)) {
+            previewPrice.textContent = '$' + parseFloat(price).toFixed(2);
+        } else {
+            previewPrice.textContent = '$0';
+        }
+    }
+    
+    // Update plan description
+    function updatePlanDescription() {
+        const description = planDescriptionInput.value.trim();
+        previewDescription.textContent = description || 'Plan description will appear here...';
+    }
+    
+    // Update billing period
+    function updateBillingPeriod() {
+        const selectedValue = billingDurationSelect.getAttribute('data-value') || 'monthly';
+        let periodText = '/monthly';
+        
+        switch(selectedValue) {
+            case 'quarterly':
+                periodText = '/quarterly';
+                break;
+            case 'yearly':
+                periodText = '/yearly';
+                break;
+            default:
+                periodText = '/monthly';
+        }
+        
+        previewPeriod.textContent = periodText;
+    }
+    
+    // Update max salons
+    function updateMaxSalons() {
+        const maxSalons = maxSalonsInput.value.trim();
+        previewMaxSalons.textContent = maxSalons || '—';
+    }
+    
+    // Update max artists
+    function updateMaxArtists() {
+        const maxArtists = maxArtistsInput.value.trim();
+        previewMaxArtists.textContent = maxArtists || '—';
+    }
+    
+    // Update popular badge
+    function updatePopularBadge() {
+        if (isPopularCheckbox.checked) {
+            previewBadge.style.display = 'inline-block';
+        } else {
+            previewBadge.style.display = 'none';
+        }
+    }
+    
+    // Update status
+    function updateStatus() {
+        if (isActiveCheckbox.checked) {
+            previewStatus.textContent = 'Active';
+            previewStatus.className = 'badge badge-success';
+        } else {
+            previewStatus.textContent = 'Inactive';
+            previewStatus.className = 'badge badge-secondary';
+        }
+    }
+    
+    // Update features
+    function updateFeatures() {
+        previewFeatures.innerHTML = '';
+        
+        featureCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const featureLabel = checkbox.nextElementSibling.textContent;
+                const featureElement = document.createElement('div');
+                featureElement.className = 'preview-feature';
+                featureElement.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-check">
+                        <polyline points="20,6 9,17 4,12"></polyline>
+                    </svg>
+                    <span>${featureLabel}</span>
+                `;
+                previewFeatures.appendChild(featureElement);
+            }
+        });
+        
+        // If no features selected, show placeholder
+        if (previewFeatures.children.length === 0) {
+            previewFeatures.innerHTML = '<div class="preview-feature-placeholder">Select features to display here</div>';
+        }
+    }
+    
+    // Add event listeners
+    planNameInput.addEventListener('input', updatePlanName);
+    planPriceInput.addEventListener('input', updatePlanPrice);
+    planDescriptionInput.addEventListener('input', updatePlanDescription);
+    maxSalonsInput.addEventListener('input', updateMaxSalons);
+    maxArtistsInput.addEventListener('input', updateMaxArtists);
+    isPopularCheckbox.addEventListener('change', updatePopularBadge);
+    isActiveCheckbox.addEventListener('change', updateStatus);
+    
+    // Add event listener for custom select dropdown
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.custom-default-select .options span')) {
+            setTimeout(updateBillingPeriod, 100); // Small delay to ensure data-value is updated
+        }
+    });
+    
+    // Add event listeners for feature checkboxes
+    featureCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateFeatures);
+    });
+    
+    // Initialize preview with default values
+    updatePlanName();
+    updatePlanPrice();
+    updatePlanDescription();
+    updateBillingPeriod();
+    updateMaxSalons();
+    updateMaxArtists();
+    updatePopularBadge();
+    updateStatus();
+    updateFeatures();
+});
+</script>
+
+<style>
+/* Additional styles for preview features */
+.preview-feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.preview-feature .feature-check {
+    color: #28a745;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.preview-feature-placeholder {
+    color: #999;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+</style>
