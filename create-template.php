@@ -40,7 +40,7 @@
                     <!-- Basic Information -->
                     <div class="card email-template-glass-card mb-4">
                         <div class="card-header">
-                            <h6 class="email-template-card-title">
+                            <h6 class="card-title">
                                 <iconify-icon icon="material-symbols:info-outline"></iconify-icon>
                                 Template Information
                             </h6>
@@ -50,13 +50,13 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="email-template-form-label">Template Name</label>
-                                        <input type="text" class="email-template-form-control" id="templateName"
+                                        <input type="text" class="form-control" id="templateName"
                                             placeholder="e.g., Welcome Email">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="email-template-form-label">Template Type</label>
                                         <div class="email-template-custom-select">
-                                            <div class="email-template-select-trigger email-template-form-control">
+                                            <div class="email-template-select-trigger form-control">
                                                 <span class="email-template-selected-text">Welcome</span>
                                                 <span class="email-template-select-arrow">
                                                     <iconify-icon icon="iconamoon:arrow-down-2-light"></iconify-icon>
@@ -76,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label class="email-template-form-label">Subject Line</label>
-                                        <input type="text" class="email-template-form-control" id="templateSubject"
+                                        <input type="text" class="form-control" id="templateSubject"
                                             placeholder="e.g., Welcome to BeautyPro!">
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                     <!-- Email Content -->
                     <div class="card email-template-glass-card">
                         <div class="card-header">
-                            <h6 class="email-template-card-title">
+                            <h6 class="card-title">
                                 <iconify-icon icon="material-symbols:edit-outline"></iconify-icon>
                                 Email Content
                             </h6>
@@ -135,18 +135,7 @@
                                 </div>
                             </div>
 
-                            <div class="email-template-variables">
-                                <label class="email-template-form-label">Available Variables</label>
-                                <div class="email-template-variable-tags">
-                                    <span class="email-template-variable-tag" data-variable="{{salon_name}}">{{salon_name}}</span>
-                                    <span class="email-template-variable-tag" data-variable="{{owner_name}}">{{owner_name}}</span>
-                                    <span class="email-template-variable-tag" data-variable="{{plan_name}}">{{plan_name}}</span>
-                                    <span class="email-template-variable-tag" data-variable="{{expiry_date}}">{{expiry_date}}</span>
-                                    <span class="email-template-variable-tag" data-variable="{{amount}}">{{amount}}</span>
-                                    <span class="email-template-variable-tag" data-variable="{{due_date}}">{{due_date}}</span>
-                                </div>
-                                <p class="email-template-variable-help">Click on variables to insert them into your email content</p>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -155,7 +144,7 @@
                 <div class="col-lg-4">
                     <div class="card email-template-glass-card email-template-sticky">
                         <div class="card-header">
-                            <h6 class="email-template-card-title">Email Preview</h6>
+                            <h6 class="card-title">Email Preview</h6>
                         </div>
                         <div class="card-body">
                             <div class="email-template-preview" id="emailPreview">
@@ -404,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     top: 20px;
 }
 
-.email-template-card-title {
+.card-title {
     font-size: 16px;
     font-weight: 700;
     color: #1f2937;
@@ -414,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-bottom: 0;
 }
 
-.email-template-card-title iconify-icon {
+.card-title iconify-icon {
     font-size: 18px;
     color: #6b7280;
 }
@@ -427,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
     display: block;
 }
 
-.email-template-form-control {
+.form-control {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 12px 16px;
@@ -436,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100%;
 }
 
-.email-template-form-control:focus {
+.form-control:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     outline: none;
@@ -765,5 +754,9 @@ document.addEventListener('DOMContentLoaded', function() {
 .btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+}
+.email-template-wrapper {
+    padding: 0;
+    margin-top: 10px;
 }
 </style>
