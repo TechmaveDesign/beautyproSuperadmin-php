@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const maxArtistsInput = document.getElementById('maxArtists');
     const isPopularCheckbox = document.getElementById('isPopular');
     const isActiveCheckbox = document.getElementById('isActive');
-    const billingDurationSelect = document.querySelector('.custom-default-select .select-trigger');
+    const billingDurationSelect = document.querySelector('.custom-default-select');
     const featureCheckboxes = document.querySelectorAll('.feature-input');
     
     // Get all preview elements
@@ -306,7 +306,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update billing period
     function updateBillingPeriod() {
-        const selectedValue = billingDurationSelect.getAttribute('data-value') || 'monthly';
+        const selectTrigger = billingDurationSelect.querySelector('.select-trigger');
+        const selectedValue = selectTrigger.getAttribute('data-value') || 'monthly';
         let periodText = '/monthly';
         
         switch(selectedValue) {
@@ -365,9 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const featureElement = document.createElement('div');
                 featureElement.className = 'preview-feature';
                 featureElement.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-check">
-                        <polyline points="20,6 9,17 4,12"></polyline>
-                    </svg>
+                    <iconify-icon icon="prime:check-circle" class="feature-check"></iconify-icon>
                     <span>${featureLabel}</span>
                 `;
                 previewFeatures.appendChild(featureElement);
@@ -389,12 +388,16 @@ document.addEventListener('DOMContentLoaded', function() {
     isPopularCheckbox.addEventListener('change', updatePopularBadge);
     isActiveCheckbox.addEventListener('change', updateStatus);
     
-    // Add event listener for custom select dropdown
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.custom-default-select .options span')) {
-            setTimeout(updateBillingPeriod, 100); // Small delay to ensure data-value is updated
-        }
-    });
+    // Add event listener for custom select dropdown - listen for clicks on options
+    if (billingDurationSelect) {
+        const options = billingDurationSelect.querySelectorAll('.options span');
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                // Small delay to ensure data-value is updated by the existing select functionality
+                setTimeout(updateBillingPeriod, 50);
+            });
+        });
+    }
     
     // Add event listeners for feature checkboxes
     featureCheckboxes.forEach(checkbox => {
@@ -411,6 +414,25 @@ document.addEventListener('DOMContentLoaded', function() {
     updatePopularBadge();
     updateStatus();
     updateFeatures();
+    
+    // Additional event listener to catch any changes in the custom select
+    // This is a backup to ensure billing period updates work
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-value') {
+                updateBillingPeriod();
+            }
+        });
+    });
+    
+    // Observe changes to the select trigger's data-value attribute
+    const selectTrigger = billingDurationSelect?.querySelector('.select-trigger');
+    if (selectTrigger) {
+        observer.observe(selectTrigger, {
+            attributes: true,
+            attributeFilter: ['data-value']
+        });
+    }
 });
 </script>
 
@@ -428,6 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #28a745;
     margin-right: 8px;
     flex-shrink: 0;
+    font-size: 16px;
 }
 
 .preview-feature-placeholder {
@@ -458,5 +481,98 @@ document.addEventListener('DOMContentLoaded', function() {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.25rem;
+}
+
+/* Enhanced preview styles */
+.plan-preview {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.preview-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.preview-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.preview-price {
+    margin-bottom: 15px;
+}
+
+.preview-price-value {
+    font-size: 36px;
+    font-weight: 800;
+    color: #667eea;
+}
+
+.preview-period {
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+.preview-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.preview-features {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.preview-details {
+    padding: 15px 0;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #666;
+    font-size: 14px;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
 }
 </style>
